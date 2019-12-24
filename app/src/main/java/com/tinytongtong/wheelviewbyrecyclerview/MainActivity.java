@@ -18,7 +18,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     private Button btnTest2;
     private Button btnTest3;
     private Button btnTest4;
-    private ProjSelectDialog projSelectDialog;
+    private WheelSelectDialog wheelSelectDialog;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -63,9 +63,9 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
             mOptionsItems.add(mList.get(i));
         }
 
-        if (projSelectDialog == null) {
-            projSelectDialog = new ProjSelectDialog(this, mOptionsItems);
-            projSelectDialog.setOnResultListener(new ProjSelectDialog.OnResultListener() {
+        if (wheelSelectDialog == null) {
+            wheelSelectDialog = new WheelSelectDialog(this, mOptionsItems);
+            wheelSelectDialog.setOnResultListener(new WheelSelectDialog.OnResultListener() {
                 @Override
                 public void onResult(int selectedIndex, String selectedItem) {
                     Toast.makeText(MainActivity.this, "selectedIndex:" + selectedIndex + ", selectedItem:" + selectedItem, Toast.LENGTH_SHORT).show();
@@ -74,9 +74,9 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
             });
         }
 
-        projSelectDialog.setSelectedPosition(defaultValue);
+        wheelSelectDialog.setSelectedPosition(defaultValue);
 
-        projSelectDialog.show();
+        wheelSelectDialog.show();
     }
 
     @Override

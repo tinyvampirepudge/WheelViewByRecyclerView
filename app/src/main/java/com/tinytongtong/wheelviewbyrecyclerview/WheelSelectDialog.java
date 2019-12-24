@@ -6,6 +6,7 @@ import android.view.View;
 import android.widget.TextView;
 
 
+import androidx.constraintlayout.widget.ConstraintLayout;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.LinearSnapHelper;
 import androidx.recyclerview.widget.RecyclerView;
@@ -22,8 +23,8 @@ import java.util.List;
  * @Date 2019-11-05 12:02
  * @Version v6.1.0
  */
-public class ProjSelectDialog {
-    public static final String TAG = ProjSelectDialog.class.getSimpleName();
+public class WheelSelectDialog {
+    public static final String TAG = WheelSelectDialog.class.getSimpleName();
 
     private Context mContext;
 
@@ -38,7 +39,7 @@ public class ProjSelectDialog {
     private List<String> mOptionsItems;
     private LinearLayoutManager llm;
 
-    public ProjSelectDialog(Context mContext, List<String> list) {
+    public WheelSelectDialog(Context mContext, List<String> list) {
         this.mContext = mContext;
         this.list = list;
         init();
@@ -61,6 +62,11 @@ public class ProjSelectDialog {
             // 弹性滑动
             LinearSnapHelper linearSnapHelper = new LinearSnapHelper();
             linearSnapHelper.attachToRecyclerView(recyclerView);
+
+            // 重新设置RecyclerView高度，避免误差
+            ConstraintLayout.LayoutParams lp = (ConstraintLayout.LayoutParams) recyclerView.getLayoutParams();
+            lp.height = ScreenUtil.dip2px(mContext, 45) * 5;
+            recyclerView.setLayoutParams(lp);
 
             recyclerView.addOnScrollListener(new RecyclerView.OnScrollListener() {
                 @Override
@@ -97,7 +103,7 @@ public class ProjSelectDialog {
             mBottomSheetDialog.setContentView(view);
 
             // BottomSheetDialog 禁止下滑关闭
-            View root = mBottomSheetDialog.getDelegate().findViewById(com.google.android.material.R.id.design_bottom_sheet);
+            View root = mBottomSheetDialog.getDelegate().findViewById(R.id.design_bottom_sheet);
             if (root != null) {
                 BottomSheetBehavior behavior = BottomSheetBehavior.from(root);
                 if (behavior != null) {
@@ -137,8 +143,8 @@ public class ProjSelectDialog {
         mOptionsItems.add("");
         mOptionsItems.add("");
 
-        WheelProjectSelectAdapter wheelProjectSelectAdapter = new WheelProjectSelectAdapter(mContext, mOptionsItems);
-        recyclerView.setAdapter(wheelProjectSelectAdapter);
+        WheelSelectAdapter wheelSelectAdapter = new WheelSelectAdapter(mContext, mOptionsItems);
+        recyclerView.setAdapter(wheelSelectAdapter);
     }
 
     public void setSelectedPosition(int selectedPosition) {

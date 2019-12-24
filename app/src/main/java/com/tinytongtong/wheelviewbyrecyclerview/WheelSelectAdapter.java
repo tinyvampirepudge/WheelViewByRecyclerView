@@ -19,11 +19,11 @@ import java.util.List;
  * @Date 2019-11-05 09:14
  * @Version v6.1.0
  */
-public class WheelProjectSelectAdapter extends RecyclerView.Adapter<WheelProjectSelectAdapter.ViewHolder> {
+public class WheelSelectAdapter extends RecyclerView.Adapter<WheelSelectAdapter.ViewHolder> {
     private Context mContext;
     private List<String> list;
 
-    public WheelProjectSelectAdapter(Context mContext, List<String> list) {
+    public WheelSelectAdapter(Context mContext, List<String> list) {
         this.mContext = mContext;
         this.list = list;
     }
