@@ -1,5 +1,5 @@
 # WheelViewByRecyclerView
-使用RecyclerView实现的WheelView，Item内容支持折行
+使用RecyclerView实现的WheelView，Item内容最多两行，超过两行后文字会自动缩小。
 
 
 ### 图例
